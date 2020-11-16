@@ -1,0 +1,8 @@
+flask
+python-dotenv
+watchdog
+gunicorn
+psycopg2
+pip == 20.1.1
+setuptools == 47.1.0
+google-cloud-storage

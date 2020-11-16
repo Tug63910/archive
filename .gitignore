@@ -1,0 +1,13 @@
+*.pyc
+__pycache__/
+
+flask-archive/instance/
+flask-archive/.pytest_cache/
+flask-archive/.coverage
+flask-archive/htmlcov/
+
+flask-archive/dist/
+flask-archive/build/
+*.egg-info/
+
+cloud_sql_proxy

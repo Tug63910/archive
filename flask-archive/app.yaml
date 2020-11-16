@@ -1,0 +1,10 @@
+runtime: python37
+entrypoint: gunicorn -b :$PORT "flaskr:create_app()" --timeout 900
+instance_class: F4
+env_variables:
+    INSTANCE_CONNECTION_NAME: "archive-295703:us-east4:cawp-archive"
+    DATABASE_USERNAME: "postgres"
+    DATABASE_PASSWORD: "Artful01"
+    DABASE_NAME: "postgres"
+    DATABASE_HOST: "35.245.254.62"
+

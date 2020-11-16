@@ -1,0 +1,15 @@
+name: archive
+channels:
+    - conda-forge
+    - anaconda
+dependencies:
+    - python=3.7
+    - flask
+    - python-dotenv
+    - watchdog
+    - gunicorn
+    - psycopg2
+    - google-cloud-storage
+    - git
+    - postgresql
+    - google-cloud-sdk
