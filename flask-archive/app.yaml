@@ -6,5 +6,5 @@ env_variables:
     DATABASE_USERNAME: "postgres"
     DATABASE_PASSWORD: "Artful01"
     DABASE_NAME: "postgres"
-    DATABASE_HOST: "35.245.254.62"
+    DATABASE_HOST: "/cloudsql/archive-295703:us-east4:cawp-archive"
 

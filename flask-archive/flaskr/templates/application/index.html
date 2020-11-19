@@ -3,16 +3,18 @@
 {% block header %}
     <h1>{% block title %}Websites{% endblock %}</h1>
     {% if g.user %}
-        <a class="action" href="{{ url_for('blog.create') }}">New</a>
+        <a class="action" href="{{ url_for('application.create') }}">New</a>
     {% endif %}
+{% endblock %}
 
 {% block content %}
-    {% for site in websites %}
+    {% for post in posts %}
         <article class="post">
             <header>
                 <div>
-                    <h1>{{ site['url'] }}</h1>
+                    <h1>{{ post['url'] }}</h1>
                 </div>
+                <a class="action" href="{{url_for('application.update',post_id=post['id']) }}">Edit</a>
             </header>
         </article>
         {% if not loop.last %}

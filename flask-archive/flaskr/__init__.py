@@ -1,5 +1,7 @@
 import os
-from flask import Flask
+from flask import Flask,current_app,g
+from flask.cli import with_appcontext
+
 
 def create_app(test_config=None):
     #create and configure the app

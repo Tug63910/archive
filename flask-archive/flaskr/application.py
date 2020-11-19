@@ -16,28 +16,28 @@ def index():
         ' ORDER BY created ASC'
     )
     posts=db.fetchall()
-    return render_templates('application/index.html',posts=posts)
+    return render_template('application/index.html',posts=posts)
 
 @bp.route('/create', methods=('GET','POST'))
 @login_required
 def create():
     if request.method=='POST':
-        url=request.form['url']
+        url=request.form['title']
         error=None
 
-    if not url:
-        error='URL required.'
+        if not url:
+            error='URL required.'
 
-    if error is not None:
-        flash(error)
-    else:
-        db=get_db()
-        db.execute(
-            'INSERT INTO websites (url,directory)'
-            ' VALUES (%s,%s);',
-            (url,url)
-        )
-        return redirect(url_for('application.index'))
+        if error is not None:
+            flash(error)
+        else:
+            db=get_db()
+            db.execute(
+                'INSERT INTO websites (url,directory)'
+                ' VALUES (%s,%s);',
+                (url,url)
+            )
+            return redirect(url_for('application.index'))
 
     return render_template('application/create.html')
 
@@ -56,13 +56,13 @@ def get_post(post_id):
 
     return post
 
-@bp.route('/<int:id>/update',methods=('GET','POST'))
+@bp.route('/<int:post_id>/update',methods=('GET','POST'))
 @login_required
 def update(post_id):
     post=get_post(post_id)
 
     if request.method=='POST':
-        url=request.form['url']
+        url=request.form['title']
         error=None
 
         if not url:
@@ -71,11 +71,17 @@ def update(post_id):
         if error is not None:   
             flash(error)
         else:
+            db=get_db()
+            db.execute(
+                'UPDATE websites SET url=%s,directory=%s'
+                ' WHERE id=%s;',
+                (url,url,post_id)
+            )
             return redirect(url_for('application.index'))
 
     return render_template('application/update.html',post=post)
 
-@bp.route('/<int:id>/delete',methods=('POST',))
+@bp.route('/<int:post_id>/delete',methods=('POST',))
 @login_required
 def delete(post_id):
     get_post(post_id)
